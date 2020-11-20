@@ -23,6 +23,34 @@ const MainTheme = createMuiTheme({
         textTransform: 'unset',
       },
     },
+    MuiInputBase: {
+      root: {
+        height: 48,
+        fontSize: 16,
+        boxShadow: '0px 2px 8px rgba(0,0,0,0.05)',
+        '&$disabled': {
+          color: 'rgba(136, 139, 144, 0.3)',
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      root: {
+        borderRadius: 8,
+        '&$disabled $notchedOutline': {
+          borderColor: 'rgba(0, 0, 0, 0.02)',
+        },
+      },
+      notchedOutline: {
+        borderColor: 'rgba(0, 0, 0, 0.02)',
+        borderWidth: 1,
+      },
+    },
+    PrivateNotchedOutline: {
+      root: {
+        borderColor: 'rgba(0, 0, 0, 0.02)',
+        borderWidth: 10,
+      },
+    },
   },
 });
 
