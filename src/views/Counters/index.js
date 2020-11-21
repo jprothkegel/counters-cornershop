@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import CountersHeader from './layout/CountersHeader';
@@ -7,11 +7,21 @@ import CountersFooter from './layout/CountersFooter';
 
 const Counters = () => {
   const counters = useSelector((state) => state.counterReducer.counters);
+  const [openCreateDialog, setOpenCreateDialog] = useState(false);
+  const selectedCounters = useSelector(
+    (state) => state.selectedCounterReducer.selectedCounters,
+  );
+
   return (
     <Box>
       <CountersHeader counters={counters} />
-      <CountersBody counters={counters} />
-      <CountersFooter />
+      <CountersBody
+        counters={counters}
+        openDialog={openCreateDialog}
+        onClose={() => setOpenCreateDialog(false)}
+        selectedCounters={selectedCounters}
+      />
+      <CountersFooter onDialogOpen={() => setOpenCreateDialog(true)} />
     </Box>
   );
 };

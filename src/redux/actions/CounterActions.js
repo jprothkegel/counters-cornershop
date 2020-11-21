@@ -1,31 +1,48 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  COUNTERS_ERROR,
-  COUNTERS_LOADING,
-  COUNTERS_SET,
-} from '../types/CounterTypes';
-import { callGetCounters } from '../../services/CounterService';
+  callGetCounters,
+  callCreateCounter,
+  callIncCounter,
+  callDecCounter,
+  callDelCounter,
+} from '../../services/CounterService';
 
-const setCounters = (counters) => {
-  return { type: COUNTERS_SET, counters };
-};
+export const fetchCounters = createAsyncThunk(
+  'counters/fetchCounters',
+  async () => {
+    const response = await callGetCounters();
+    return response.data;
+  },
+);
 
-const errorCounters = () => {
-  return { type: COUNTERS_ERROR };
-};
+export const createCounter = createAsyncThunk(
+  'counters/createCounter',
+  async (title) => {
+    const response = await callCreateCounter(title);
+    return response.data;
+  },
+);
 
-const gettingCounters = () => {
-  return { type: COUNTERS_LOADING };
-};
+export const incrementCounter = createAsyncThunk(
+  'counters/incrementCounter',
+  async (id) => {
+    const response = await callIncCounter(id);
+    return response.data;
+  },
+);
 
-export const getCounters = () => {
-  return async (dispatch) => {
-    dispatch(gettingCounters());
-    try {
-      const res = await callGetCounters();
-      if (res.status !== 200) dispatch(errorCounters());
-      else dispatch(setCounters(res.data));
-    } catch (err) {
-      dispatch(errorCounters());
-    }
-  };
-};
+export const decrementCounter = createAsyncThunk(
+  'counters/decrementCounter',
+  async (id) => {
+    const response = await callDecCounter(id);
+    return response.data;
+  },
+);
+
+export const deleteCounter = createAsyncThunk(
+  'counters/deleteCounter',
+  async (id) => {
+    const response = await callDelCounter(id);
+    return response.data;
+  },
+);

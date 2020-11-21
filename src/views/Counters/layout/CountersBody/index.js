@@ -3,30 +3,32 @@ import { Box } from '@material-ui/core';
 import NoCounters from '../../components/NoCounters';
 import CounterList from '../../components/CounterList';
 import Loader from '../../../../components/Loader';
+import CreateCounterDialog from '../../../../components/CreateCounterDialog';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCounters } from '../../../../redux/actions/CounterActions';
+import { fetchCounters } from '../../../../redux/actions/counterActions';
 
 const CountersBody = ({ ...props }) => {
-  const { counters } = props;
+  const { counters, openDialog, onClose, selectedCounters } = props;
   const dispatch = useDispatch();
-  const { setLoading, setSuccess } = useSelector(
-    (state) => state.counterReducer,
-  );
+  const counterStatus = useSelector((state) => state.counterReducer.status);
+  // const error = useSelector((state) => state.counterReducer.error);
 
   useEffect(() => {
-    dispatch(getCounters());
-  }, []);
+    if (counterStatus === 'idle') dispatch(fetchCounters());
+  }, [counterStatus, dispatch]);
+
   return (
     <Box
       height="calc(100vh - 56px - 80px)"
       display="flex"
       flexDirection="column"
     >
-      {!setLoading && setSuccess && counters.length === 0 && <NoCounters />}
-      {!setLoading && setSuccess && counters.length !== 0 && (
-        <CounterList counters={counters} />
+      {counterStatus === 'succeded' && counters.length === 0 && <NoCounters />}
+      {counterStatus === 'succeded' && counters.length !== 0 && (
+        <CounterList counters={counters} selectedCounters={selectedCounters} />
       )}
-      {setLoading && <Loader />}
+      {counterStatus === 'loading' && <Loader />}
+      <CreateCounterDialog open={openDialog} onClose={() => onClose()} />
     </Box>
   );
 };

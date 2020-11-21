@@ -51,6 +51,15 @@ const MainTheme = createMuiTheme({
         borderWidth: 10,
       },
     },
+    MuiDialog: {
+      paperFullScreen: {
+        borderRadius: '16px 16px 0px 0px',
+        marginTop: 15,
+      },
+      paperScrollPaper: {
+        borderRadius: 16,
+      },
+    },
   },
 });
 
