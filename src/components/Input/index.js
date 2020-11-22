@@ -3,7 +3,7 @@ import { TextField } from '@material-ui/core';
 import useStyles from './styles';
 
 const Input = ({ ...props }) => {
-  const { onChange } = props;
+  const { onChange, value } = props;
   const classes = useStyles();
   return (
     <TextField
@@ -12,6 +12,7 @@ const Input = ({ ...props }) => {
       variant="outlined"
       className={classes.textField}
       onChange={(event) => onChange(event.target.value)}
+      value={value}
     />
   );
 };
