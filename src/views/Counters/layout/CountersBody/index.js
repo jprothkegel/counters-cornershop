@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box } from '@material-ui/core';
+import { Box, TableSortLabel } from '@material-ui/core';
 import NoCounters from '../../components/NoCounters';
 import CounterList from '../../components/CounterList';
 import Loader from '../../../../components/Loader';
@@ -17,12 +17,12 @@ const CountersBody = ({ ...props }) => {
     searchFocus,
   } = props;
   const dispatch = useDispatch();
-  const counterStatus = useSelector((state) => state.counterReducer.status);
+  const { setStatus } = useSelector((state) => state.counterReducer);
   // const error = useSelector((state) => state.counterReducer.error);
 
   useEffect(() => {
-    if (counterStatus === 'idle') dispatch(fetchCounters());
-  }, [counterStatus, dispatch]);
+    if (setStatus === 'idle') dispatch(fetchCounters());
+  }, [TableSortLabel, dispatch]);
 
   return (
     <Box
@@ -33,13 +33,18 @@ const CountersBody = ({ ...props }) => {
       alignItems="center"
       style={{ opacity: searchFocus ? '0.5' : '1' }}
     >
-      {counterStatus === 'succeded' && counters.length === 0 && (
+      {setStatus === 'succeded' && counters.length === 0 && (
         <NoCounters search={search} />
       )}
-      {counterStatus === 'succeded' && counters.length !== 0 && (
-        <CounterList counters={counters} selectedCounters={selectedCounters} />
-      )}
-      {counterStatus === 'loading' && <Loader />}
+      {(setStatus === 'succeded' || setStatus === 'refreshing') &&
+        counters.length !== 0 && (
+          <CounterList
+            counters={counters}
+            selectedCounters={selectedCounters}
+            status={setStatus}
+          />
+        )}
+      {setStatus === 'loading' && <Loader />}
       <CreateCounterDialog open={openDialog} onClose={() => onClose()} />
     </Box>
   );

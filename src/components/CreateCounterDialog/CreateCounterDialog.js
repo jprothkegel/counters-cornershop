@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Dialog, Divider, useMediaQuery } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 import CreateCounterHeader from './CreateCounterHeader';
 import CreateCounterBody from './CreateCounterBody';
 import Transition from '../Transition';
@@ -12,6 +13,7 @@ const CreateCounterDialog = ({ ...props }) => {
   const classes = useCreateCounterStyles({ fullScreen });
   const [counterValue, setCounterValue] = useState('');
   const [examplesOpen, setExamplesOpen] = useState(false);
+  const { createStatus } = useSelector((state) => state.counterReducer);
 
   return (
     <React.Fragment>
@@ -23,12 +25,17 @@ const CreateCounterDialog = ({ ...props }) => {
         className={classes.dialog}
         open={open}
       >
-        <CreateCounterHeader value={counterValue} onClose={() => onClose()} />
+        <CreateCounterHeader
+          value={counterValue}
+          onClose={() => onClose()}
+          createStatus={createStatus}
+        />
         <Divider />
         <CreateCounterBody
           onChange={(event) => setCounterValue(event)}
           onExamplesOpen={() => setExamplesOpen(true)}
           value={counterValue}
+          createStatus={createStatus}
         />
       </Dialog>
       <ExamplesDialog

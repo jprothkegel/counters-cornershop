@@ -46,3 +46,11 @@ export const deleteCounter = createAsyncThunk(
     return response.data;
   },
 );
+
+export const refreshCounters = createAsyncThunk(
+  'counters/refreshCounters',
+  async () => {
+    const response = await callGetCounters();
+    return response.data;
+  },
+);

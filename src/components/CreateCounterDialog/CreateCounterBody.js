@@ -1,10 +1,11 @@
 import React from 'react';
 import { Box, Typography, Link } from '@material-ui/core';
 import Input from '../Input';
+import Loader from '../Loader';
 import { useCreteCounterBodyStyles } from './styles';
 
 const CreateCounterBody = ({ ...props }) => {
-  const { onChange, onExamplesOpen, value } = props;
+  const { onChange, onExamplesOpen, value, createStatus } = props;
   const classes = useCreteCounterBodyStyles();
 
   return (
@@ -21,6 +22,7 @@ const CreateCounterBody = ({ ...props }) => {
           examples.
         </Link>
       </Typography>
+      {createStatus === 'creating' && <Loader />}
     </Box>
   );
 };

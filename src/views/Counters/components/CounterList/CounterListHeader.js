@@ -1,12 +1,15 @@
 import React from 'react';
-import { Box, Typography, IconButton } from '@material-ui/core';
+import { Box, Typography, IconButton, Button } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import RefreshIcon from '../../../../components/Icon/Refresh';
 import { useCounterHeaderStyles } from './styles';
 import { countTimes } from '../../../../helpers/CounterHelper';
+import { refreshCounters } from '../../../../redux/actions/counterActions';
 
 const CounterListHeader = ({ ...props }) => {
-  const { counters, selectedQuantity } = props;
+  const { counters, selectedQuantity, status } = props;
   const classes = useCounterHeaderStyles();
+  const dispatch = useDispatch();
   return (
     <Box display="flex" alignItems="center" className={classes.container}>
       {selectedQuantity > 0 && (
@@ -26,9 +29,16 @@ const CounterListHeader = ({ ...props }) => {
           </Typography>
         </React.Fragment>
       )}
-      <IconButton>
-        <RefreshIcon />
-      </IconButton>
+      {status !== 'refreshing' && (
+        <IconButton onClick={() => dispatch(refreshCounters())}>
+          <RefreshIcon fill="#4A4A4A" />
+        </IconButton>
+      )}
+      {status === 'refreshing' && (
+        <Button color="primary">
+          <RefreshIcon fill="#FF9500" /> Refreshing ...
+        </Button>
+      )}
     </Box>
   );
 };
