@@ -6,7 +6,7 @@ import Counter from './Counter';
 const CounterList = ({ ...props }) => {
   const { counters, selectedCounters } = props;
   return (
-    <Box maxWidth="600px" padding="0px 10px">
+    <Box padding="0px 10px" width="100%" maxWidth="600px">
       <CounterListHeader
         counters={counters}
         selectedQuantity={selectedCounters.length}

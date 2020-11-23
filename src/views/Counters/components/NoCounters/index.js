@@ -2,7 +2,8 @@ import React from 'react';
 import { Box, Typography } from '@material-ui/core';
 import useStyles from './styles';
 
-const NoCounters = () => {
+const NoCounters = ({ ...props }) => {
+  const { search } = props;
   const classes = useStyles();
   return (
     <Box
@@ -13,12 +14,17 @@ const NoCounters = () => {
       flexGrow={1}
       p={6}
     >
-      <Typography className={classes.title}> No counters yet </Typography>
-      <Typography className={classes.subtitle}>
-        {' '}
-        “When I started counting my blessings, my whole life turned around.”{' '}
-      </Typography>
-      <Typography className={classes.subtitle}>—Willie Nelson</Typography>
+      {!search && (
+        <React.Fragment>
+          <Typography className={classes.title}> No counters yet </Typography>
+          <Typography className={classes.subtitle}>
+            {' '}
+            “When I started counting my blessings, my whole life turned around.”{' '}
+          </Typography>
+          <Typography className={classes.subtitle}>—Willie Nelson</Typography>
+        </React.Fragment>
+      )}
+      {search && <Typography>No results</Typography>}
     </Box>
   );
 };

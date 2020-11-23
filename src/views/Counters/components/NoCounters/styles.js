@@ -11,6 +11,11 @@ const useStyles = makeStyles(() => ({
     fontSize: 17,
     textAlign: 'center',
   },
+  nores: {
+    fontSize: 22,
+    fontWeight: 500,
+    color: '#888B90',
+  },
 }));
 
 export default useStyles;

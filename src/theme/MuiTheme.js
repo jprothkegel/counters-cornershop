@@ -60,6 +60,18 @@ const MainTheme = createMuiTheme({
         borderRadius: 16,
       },
     },
+    MuiTooltip: {
+      tooltip: {
+        color: '#000',
+        borderRadius: 10,
+        backgroundColor: '#FAFAFA',
+        border: '1px solid rgba(0, 0, 0, 0.1)',
+        boxShadow: '0px 24px 38px rgba(0, 0, 0, 0.14)',
+      },
+      arrow: {
+        color: '#FAFAFA',
+      },
+    },
   },
 });
 

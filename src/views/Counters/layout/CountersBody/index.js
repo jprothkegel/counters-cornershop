@@ -8,7 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCounters } from '../../../../redux/actions/counterActions';
 
 const CountersBody = ({ ...props }) => {
-  const { counters, openDialog, onClose, selectedCounters } = props;
+  const {
+    counters,
+    openDialog,
+    onClose,
+    selectedCounters,
+    search,
+    searchFocus,
+  } = props;
   const dispatch = useDispatch();
   const counterStatus = useSelector((state) => state.counterReducer.status);
   // const error = useSelector((state) => state.counterReducer.error);
@@ -22,8 +29,13 @@ const CountersBody = ({ ...props }) => {
       height="calc(100vh - 56px - 80px)"
       display="flex"
       flexDirection="column"
+      width="100%"
+      alignItems="center"
+      style={{ opacity: searchFocus ? '0.5' : '1' }}
     >
-      {counterStatus === 'succeded' && counters.length === 0 && <NoCounters />}
+      {counterStatus === 'succeded' && counters.length === 0 && (
+        <NoCounters search={search} />
+      )}
       {counterStatus === 'succeded' && counters.length !== 0 && (
         <CounterList counters={counters} selectedCounters={selectedCounters} />
       )}

@@ -22,7 +22,7 @@ const Counter = ({ ...props }) => {
   useEffect(() => {
     if (selected) dispatch(selectCounter({ id, title, count }));
     else dispatch(deselectCounter({ id, title, count }));
-  }, [selected]);
+  }, [selected, id, title, count, dispatch]);
 
   return (
     <Box
