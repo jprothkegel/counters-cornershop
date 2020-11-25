@@ -7,7 +7,7 @@ import ShareIcon from '../../../../components/Icon/ShareIcon';
 import MessageDialog from '../../../../components/MessageDialog';
 import ShareTooltip from '../../../../components/ShareTooltip';
 import Alert from '../../../../components/Alert';
-import { deleteCounter } from '../../../../redux/actions/counterActions';
+import { deleteCounter } from '../../../../redux/actions/CounterActions';
 import { deselectCounter } from '../../../../redux/slices/selectedCounterSlice';
 import { confirmationTextFormatter } from '../../../../helpers/CounterHelper';
 import useStyles from './styles';

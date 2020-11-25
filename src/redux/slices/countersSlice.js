@@ -6,7 +6,7 @@ import {
   decrementCounter,
   deleteCounter,
   refreshCounters,
-} from '../actions/counterActions';
+} from '../actions/CounterActions';
 
 const countersSlice = createSlice({
   name: 'counters',

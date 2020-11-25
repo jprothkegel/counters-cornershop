@@ -6,7 +6,7 @@ import ErrorCounters from '../../components/ErrorCounters';
 import Loader from '../../../../components/Loader';
 import CreateCounterDialog from '../../../../components/CreateCounterDialog';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCounters } from '../../../../redux/actions/counterActions';
+import { fetchCounters } from '../../../../redux/actions/CounterActions';
 import PropTypes from 'prop-types';
 
 const CountersBody = ({ ...props }) => {

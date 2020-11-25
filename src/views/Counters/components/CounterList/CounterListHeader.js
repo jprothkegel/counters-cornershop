@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import RefreshIcon from '../../../../components/Icon/Refresh';
 import { useCounterHeaderStyles } from './styles';
 import { countTimes } from '../../../../helpers/CounterHelper';
-import { refreshCounters } from '../../../../redux/actions/counterActions';
+import { refreshCounters } from '../../../../redux/actions/CounterActions';
 import PropTypes from 'prop-types';
 
 const CounterListHeader = ({ ...props }) => {

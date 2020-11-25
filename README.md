@@ -1,121 +1,67 @@
 # Cornershop Frontend Test
 
-#### ⚠️ Before you begin
+## Stack
+----
+For this test I used these important dependencies:
+* React
+* React-Router-Dom
+* Material UI
+* Axios
+* PropTypes
+* Redux with Toolkit
+* Cypress
+* Eslint
+* Prettier
+* Husky
 
-> Create a new git repository on the root of this folder, upload it to Github, and invite [@mcarafie](https://github.com/mcarafie) and [@cornershop-hr](https://github.com/cornershop-hr) as collaborators.
-
-## Overview
-
-You have been commissioned to implement a counter application following the design specs provided [here](https://www.figma.com/file/6CnuM0Gj9oiwi2AV9vXLRH/Counters-for-the-web?node-id=0%3A1).
-
-The application consists of several screens where each screen has one or multiple states that you will have to implement following the design specs the best you can.
-
-We have provided starter boilerplate so you can write your application without any hassle and also a NodeJS dummy backend with all the neccessary endpoints to persist your data.
-
-For bootstrapping the frontend application we're using `react-scripts`, so as you might have guessed you **must** use React (it's our primary view layer for frontend applications here at Cornershop).
-
-> Note: This is NOT a backend test. Don't make it require any databases. Don't touch the server folder. Just leave it as it is.
-
-## Requirements
-
-Your submission will be evaluated considering the following criterias:
-
-- Good implementation of UI elements, both visually and at code level.
-  - Extra points for writing custom styling code for UI elements.
-  - Use whatever CSS flavor you want: plane old CSS, SASS, LESS, CSS-in-JS, CSS modules, everything is allowed.
-- Good architecture and software design.
-  - _Hint:_ Usage of design patterns, good code organization, separation of concerns, etc. 
-- Use of best practices when writing code.
-  - _Hint:_ Idiomatic & readable code, good use of composition, DRY, etc.
-- The application must persist data back to the server.
-- Feature completion (all features must be implemented for a perfect score).
-- Good management of state using built-in React features or third party dependencies (context, `redux`, `mobx`, `xstate` or whatever you might like).
-- You must include tests.
-  - Behavior tests are perfect.
-- Your project must be self-contained (make sure you're not using global dependencies).
-- We would love to understand your thought process, so writing a little summary of your choices, what you did and how you solved the test is required (write it here on this README file).
-
-Please consider that we expect your solution to be production-ready. In other words, that millions of users would be thrilled to use your product.
-
-> Note: You can use whatever dependencies/libraries you want, the only requirement dependency-wise is to use React.
-
-## Getting started
-
-First and foremost, make sure you have `node` and `npm` (or `yarn`) installed on your machine, then run:
-
-```bash
-$ npm install
-$ npm start
-```
-
-For `yarn` users:
-
-```bash
-$ yarn
-$ yarn start
-```
-
-## API endpoints / examples
-
-Since the backend API runs locally on a different port (`3001`) than the `react-scripts` dev server (`3000`), we have setup a proxy so you don't have to do anything special to consume the API (fetching data from `/api/v1/counter` will do).
-
-> The following endpoints are expecting a `Content-Type: application/json` header.
-
-#### **GET** `/api/v1/counter`.
-
-_Fetch a list of counters._
-```javascript
-/* Response */
-[]
-```
-
-#### **POST** `/api/v1/counter`.
-
-_Adds a counter._
-
-```javascript
-/* Body */
-{ title: "bob" }
-
-/* Response */
-{ id: "asdf", title: "bob", count: 0 }
-```
-
-#### **POST** `/api/v1/counter/inc`
-_Increments the value of a counter._
-```javascript
-/* Body */
-{ id: "asdf" }
-
-/* Response */
-{ id: "asdf", title: "bob", count: 1 }
-```
-
-#### **POST** `/api/v1/counter/dec`
-_Decrements the value of a counter._
-
-```javascript
-/* Body */
-{ id: "asdf" }
-
-/* Response */
-{ id: "asdf", title: "bob", count: 0 }
-```
-
-#### **DELETE** `/api/v1/counter`
-_Deletes a counter._
-
-```javascript
-/* Body */
-{ id: "qwer" }
-
-/* Response */
-"qwer" // The id of the deleted counter
-```
+## Architecural Choices
 ---
+The main folders inside /src are:
 
-Good luck! 🎉
+* `cypress-tests`
+* `components`
+* `constants`
+* `helpers`
+* `redux`
+* `services`
+* `theme`
+* `views`
 
-We hope your submission is… to die for.
+### Explanation
+* `cypress-tests`: This application use behavioural tests to simulate all the features, so in this folder are all the files needed to run the tests with Cypress.
+* `components`: This folder holds all the reusable components throughout the application. This follows the idea of flat architecture and descriptive names to be easy to navigate and find the components. It also follows [AirBnb](https://airbnb.io/javascript/react/#naming) naming convention.
 
-![Coffin dance](coffin.gif)
+* `constants`: This folder holds constants to use throughout the application, like the routes or the examples.
+* `helpers`: Here are helper functions, that for example formats some text.
+* `redux`: The redux folder has subfolders differentiating tasks:
+  * `actions`: Here are the functions that triggers actions to change the state.
+  * `reducers`: Here is the main reducer that combine the reducers that are returned from the different slices.
+  * `slices`: The [slices](https://redux-toolkit.js.org/api/createSlice) are functions that accepts initial state, reducers and a name. These generates automatically action creators and action types to reduce verbosing.
+  * `store`: Here is the store.
+* `services`: This folder holds the functions that communicate with the BFF, that makes the http requests.
+* `theme`: Here is the theme from Material UI.
+* `views`: This folder is where the things we see are saved. This follow the [AirBnb](https://airbnb.io/javascript/react/#naming) naming convention too. This has sub-folders too for the Counters view in particular:
+ * `components`: This holds components that are unique to the view.
+ * `layout`: Here is we play with the different components, composing the different parts from the view.
+
+ ## How to run the app
+ ---
+ First of all is important to install all the dependencies used in this application, so in the root folder run:
+ * `npm install`
+
+ Then run the application with the following command in the root folder:
+ * `npm start`
+
+## How to run the tests
+---
+First of all is needed to go to the test folder, from the app root folder run:
+* `cd cypress-tests`  
+
+Then in the cypress folder is also needed to install the dependencies with:
+  * `npm install` 
+
+To run the tests, there are two ways:
+  * `npm run cypress:open`: this will deploy a chrome window, where tests can be runned.
+  * `npm run cypress:run`: this runs the test on the terminal.
+
+# Juan Pablo Rothkegel Ide

@@ -8,7 +8,7 @@ import { useCounterStyles } from './styles';
 import {
   incrementCounter,
   decrementCounter,
-} from '../../../../redux/actions/counterActions';
+} from '../../../../redux/actions/CounterActions';
 import {
   selectCounter,
   deselectCounter,

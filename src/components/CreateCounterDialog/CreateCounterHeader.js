@@ -3,7 +3,7 @@ import { Box, IconButton, Typography, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { useCreateCounterHeaderStyles } from './styles';
-import { createCounter } from '../../redux/actions/counterActions';
+import { createCounter } from '../../redux/actions/CounterActions';
 import { resetCreation } from '../../redux/slices/countersSlice';
 import PropTypes from 'prop-types';
 
