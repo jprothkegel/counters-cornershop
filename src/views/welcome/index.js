@@ -30,7 +30,12 @@ const Welcome = () => {
             counted.
           </Typography>
         </div>
-        <Button variant="contained" color="primary" onClick={handleGetStarted}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleGetStarted}
+          data-cy="getStarted"
+        >
           Get started
         </Button>
       </Box>

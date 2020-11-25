@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
 import SearchInput from '../../../../components/SearchInput';
+import PropTypes from 'prop-types';
 
 const CountersHeader = ({ ...props }) => {
   const { searchDisabled, counters, onSearch, onFocus } = props;
@@ -15,6 +16,13 @@ const CountersHeader = ({ ...props }) => {
       />
     </Box>
   );
+};
+
+CountersHeader.propTypes = {
+  searchDisabled: PropTypes.bool,
+  counters: PropTypes.array,
+  onSearch: PropTypes.func,
+  onFocus: PropTypes.func,
 };
 
 export default CountersHeader;

@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { Box, TableSortLabel } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import NoCounters from '../../components/NoCounters';
 import CounterList from '../../components/CounterList';
+import ErrorCounters from '../../components/ErrorCounters';
 import Loader from '../../../../components/Loader';
 import CreateCounterDialog from '../../../../components/CreateCounterDialog';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCounters } from '../../../../redux/actions/counterActions';
+import PropTypes from 'prop-types';
 
 const CountersBody = ({ ...props }) => {
   const {
@@ -17,12 +19,11 @@ const CountersBody = ({ ...props }) => {
     searchFocus,
   } = props;
   const dispatch = useDispatch();
-  const { setStatus } = useSelector((state) => state.counterReducer);
-  // const error = useSelector((state) => state.counterReducer.error);
+  const { fetchStatus } = useSelector((state) => state.counterReducer);
 
   useEffect(() => {
-    if (setStatus === 'idle') dispatch(fetchCounters());
-  }, [TableSortLabel, dispatch]);
+    if (fetchStatus === 'idle') dispatch(fetchCounters());
+  }, [fetchStatus, dispatch]);
 
   return (
     <Box
@@ -33,21 +34,33 @@ const CountersBody = ({ ...props }) => {
       alignItems="center"
       style={{ opacity: searchFocus ? '0.5' : '1' }}
     >
-      {setStatus === 'succeded' && counters.length === 0 && (
+      {fetchStatus === 'errorFetching' && (
+        <ErrorCounters onRetry={() => dispatch(fetchCounters())} />
+      )}
+      {fetchStatus === 'succeded' && counters.length === 0 && (
         <NoCounters search={search} />
       )}
-      {(setStatus === 'succeded' || setStatus === 'refreshing') &&
+      {(fetchStatus === 'succeded' || fetchStatus === 'refreshing') &&
         counters.length !== 0 && (
           <CounterList
             counters={counters}
             selectedCounters={selectedCounters}
-            status={setStatus}
+            status={fetchStatus}
           />
         )}
-      {setStatus === 'loading' && <Loader />}
+      {fetchStatus === 'loading' && <Loader />}
       <CreateCounterDialog open={openDialog} onClose={() => onClose()} />
     </Box>
   );
+};
+
+CountersBody.propTypes = {
+  counters: PropTypes.array,
+  openDialog: PropTypes.bool,
+  onClose: PropTypes.func,
+  selectedCounters: PropTypes.array,
+  search: PropTypes.bool,
+  searchFocus: PropTypes.bool,
 };
 
 export default CountersBody;

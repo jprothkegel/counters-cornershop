@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { useCreateCounterHeaderStyles } from './styles';
 import { createCounter } from '../../redux/actions/counterActions';
+import { resetCreation } from '../../redux/slices/countersSlice';
+import PropTypes from 'prop-types';
 
 const CreateCounterHeader = ({ ...props }) => {
   const { onClose, value, createStatus } = props;
@@ -15,7 +17,10 @@ const CreateCounterHeader = ({ ...props }) => {
   };
 
   useEffect(() => {
-    if (createStatus === 'succeded') onClose();
+    if (createStatus === 'succeded') {
+      onClose();
+      dispatch(resetCreation());
+    }
   }, [createStatus]);
 
   return (
@@ -30,11 +35,18 @@ const CreateCounterHeader = ({ ...props }) => {
         color="primary"
         className={classes.button}
         onClick={() => handleCreation(value)}
+        data-cy="saveButton"
       >
         Save
       </Button>
     </Box>
   );
+};
+
+CreateCounterHeader.propTypes = {
+  onClose: PropTypes.func,
+  value: PropTypes.string,
+  createStatus: PropTypes.string,
 };
 
 export default CreateCounterHeader;

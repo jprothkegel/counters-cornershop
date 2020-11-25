@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Box, Chip } from '@material-ui/core';
 import { useExampleChipsStyles } from './styles';
+import PropTypes from 'prop-types';
 
 const ExamplesChips = ({ ...props }) => {
   const { data, title, onClick, onClose } = props;
@@ -21,11 +22,19 @@ const ExamplesChips = ({ ...props }) => {
             key={example}
             label={example}
             onClick={() => handleChips(example)}
+            data-cy="examplesChip"
           />
         ))}
       </Box>
     </React.Fragment>
   );
+};
+
+ExamplesChips.propTypes = {
+  data: PropTypes.array,
+  title: PropTypes.string,
+  onClick: PropTypes.func,
+  onClose: PropTypes.func,
 };
 
 export default ExamplesChips;

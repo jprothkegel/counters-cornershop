@@ -1,13 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useDialogTypeStyles = makeStyles((theme) => ({
+export const useDialogTypeStyles = makeStyles(() => ({
   deleteButton: {
     backgroundColor: '#FFF',
     color: '#FF3B30',
-  },
-  secondaryButton: {
-    backgroundColor: '#FFF',
-    color: theme.palette.primary.main,
   },
 }));
 

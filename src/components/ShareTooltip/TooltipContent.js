@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, Button, Box } from '@material-ui/core';
 import PaperNote from '../Icon/PaperNote';
 import { useTooltipContentStyles } from './styles';
+import PropTypes from 'prop-types';
 
 const TooltipContent = ({ ...props }) => {
   const { count, onShare, onClose } = props;
@@ -28,6 +29,7 @@ const TooltipContent = ({ ...props }) => {
             variant="contained"
             className={classes.button}
             onClick={handleCopy}
+            data-cy="copyButton"
           >
             Copy
           </Button>
@@ -38,6 +40,12 @@ const TooltipContent = ({ ...props }) => {
       </Box>
     </React.Fragment>
   );
+};
+
+TooltipContent.propTypes = {
+  count: PropTypes.number,
+  onShare: PropTypes.func,
+  onClose: PropTypes.func,
 };
 
 export default TooltipContent;

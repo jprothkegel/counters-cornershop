@@ -5,6 +5,7 @@ import RefreshIcon from '../../../../components/Icon/Refresh';
 import { useCounterHeaderStyles } from './styles';
 import { countTimes } from '../../../../helpers/CounterHelper';
 import { refreshCounters } from '../../../../redux/actions/counterActions';
+import PropTypes from 'prop-types';
 
 const CounterListHeader = ({ ...props }) => {
   const { counters, selectedQuantity, status } = props;
@@ -41,6 +42,12 @@ const CounterListHeader = ({ ...props }) => {
       )}
     </Box>
   );
+};
+
+CounterListHeader.propTypes = {
+  counters: PropTypes.array,
+  selectedQuantity: PropTypes.number,
+  status: PropTypes.string,
 };
 
 export default CounterListHeader;

@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@material-ui/core';
 import CounterListHeader from './CounterListHeader';
 import Counter from './Counter';
+import PropTypes from 'prop-types';
 
 const CounterList = ({ ...props }) => {
   const { counters, selectedCounters, status } = props;
@@ -22,6 +23,12 @@ const CounterList = ({ ...props }) => {
       ))}
     </Box>
   );
+};
+
+CounterList.propTypes = {
+  counters: PropTypes.array,
+  selectedCounters: PropTypes.array,
+  status: PropTypes.string,
 };
 
 export default CounterList;

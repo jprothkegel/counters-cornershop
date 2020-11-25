@@ -4,6 +4,7 @@ import Transition from '../Transition';
 import ExamplesDialogHeader from './ExamplesDialogHeader';
 import ExamplesDialogBody from './ExamplesDialogBody';
 import { useExamplesDialogStyles } from './styles';
+import PropTypes from 'prop-types';
 
 const ExamplesDialog = ({ ...props }) => {
   const { open, onClose, onClick } = props;
@@ -26,6 +27,12 @@ const ExamplesDialog = ({ ...props }) => {
       />
     </Dialog>
   );
+};
+
+ExamplesDialog.propTypes = {
+  open: PropTypes.bool,
+  onClick: PropTypes.func,
+  onClose: PropTypes.func,
 };
 
 export default ExamplesDialog;

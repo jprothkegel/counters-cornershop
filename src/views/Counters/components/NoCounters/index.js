@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@material-ui/core';
 import useStyles from './styles';
+import PropTypes from 'prop-types';
 
 const NoCounters = ({ ...props }) => {
   const { search } = props;
@@ -27,6 +28,10 @@ const NoCounters = ({ ...props }) => {
       {search && <Typography>No results</Typography>}
     </Box>
   );
+};
+
+NoCounters.propTypes = {
+  search: PropTypes.bool,
 };
 
 export default NoCounters;

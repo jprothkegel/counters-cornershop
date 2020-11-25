@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Button } from '@material-ui/core';
 import { useDialogTypeStyles } from './styles';
+import PropTypes from 'prop-types';
 
 const DialogType = ({ ...props }) => {
   const { type, onClose, onDelete, onRetry } = props;
@@ -23,6 +24,7 @@ const DialogType = ({ ...props }) => {
               variant="contained"
               className={classes.deleteButton}
               onClick={() => onDelete()}
+              data-cy="deleteButton"
             >
               Delete
             </Button>
@@ -37,12 +39,18 @@ const DialogType = ({ ...props }) => {
               variant="contained"
               color="primary"
               onClick={() => onRetry()}
+              data-cy="retryButton"
             >
               Retry
             </Button>
           </Grid>
           <Grid item>
-            <Button variant="contained" onClick={() => onClose()}>
+            <Button
+              variant="contained"
+              onClick={() => onClose()}
+              color="secondary"
+              data-cy="dismissButton"
+            >
               Dismiss
             </Button>
           </Grid>
@@ -54,8 +62,9 @@ const DialogType = ({ ...props }) => {
           <Grid item>
             <Button
               variant="contained"
-              className={classes.secondaryButton}
+              color="primary"
               onClick={() => onClose()}
+              data-cy="defaultDismissButton"
             >
               Dismiss
             </Button>
@@ -63,6 +72,13 @@ const DialogType = ({ ...props }) => {
         </React.Fragment>
       );
   }
+};
+
+DialogType.propTypes = {
+  type: PropTypes.string,
+  onClose: PropTypes.func,
+  onDelete: PropTypes.func,
+  onRetry: PropTypes.func,
 };
 
 export default DialogType;

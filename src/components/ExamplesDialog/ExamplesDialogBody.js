@@ -3,6 +3,7 @@ import { Box, Typography } from '@material-ui/core';
 import { EXAMPLES } from '../../constants/examples';
 import ExamplesChips from './ExamplesChips';
 import { useExamplesDialogBodyStyles } from './styles';
+import PropTypes from 'prop-types';
 
 const ExamplesDialogBody = ({ ...props }) => {
   const { onClick, onClose } = props;
@@ -23,6 +24,11 @@ const ExamplesDialogBody = ({ ...props }) => {
       ))}
     </Box>
   );
+};
+
+ExamplesDialogBody.propTypes = {
+  onClick: PropTypes.func,
+  onClose: PropTypes.func,
 };
 
 export default ExamplesDialogBody;

@@ -21,7 +21,4 @@
       "version": 26
     }
   },
-  "rules": {
-    "react/prop-types": "off"
-  }
 }

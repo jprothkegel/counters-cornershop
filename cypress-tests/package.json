@@ -1,0 +1,20 @@
+{
+  "name": "cypress-tests-counters-for-cornershop",
+  "version": "1.0.0",
+  "description": "behavioural tests using cypress for counters",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "author": "Juan Pablo Rothkegel Ide",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^6.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/cypress": "^7.0.2",
+    "cypress-plugin-tab": "^1.0.5",
+    "eslint-plugin-cypress": "^2.11.2"
+  }
+}

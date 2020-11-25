@@ -3,9 +3,18 @@ import { Dialog, Grid, Typography } from '@material-ui/core';
 import Transition from '../Transition';
 import DialogType from './DialogType';
 import { useMessageDialogStyles } from './styles';
+import PropTypes from 'prop-types';
 
 const MessageDialog = ({ ...props }) => {
-  const { open, onClose, title, subtitle, type, deleteCounter, retry } = props;
+  const {
+    open,
+    onClose,
+    title,
+    subtitle,
+    type,
+    deleteCounter,
+    onRetry,
+  } = props;
   const classes = useMessageDialogStyles();
   return (
     <Dialog
@@ -43,12 +52,22 @@ const MessageDialog = ({ ...props }) => {
             type={type}
             onClose={() => onClose()}
             onDelete={() => deleteCounter()}
-            onRetry={() => retry()}
+            onRetry={() => onRetry()}
           />
         </Grid>
       </Grid>
     </Dialog>
   );
+};
+
+MessageDialog.propTypes = {
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  type: PropTypes.string,
+  deleteCounter: PropTypes.func,
+  onRetry: PropTypes.func,
 };
 
 export default MessageDialog;

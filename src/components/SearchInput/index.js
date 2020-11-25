@@ -3,6 +3,7 @@ import { TextField, Button, InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { getArrayFiltered } from '../../helpers/CounterHelper';
 import useStyles from './styles';
+import PropTypes from 'prop-types';
 
 const SearchInput = ({ ...props }) => {
   const { disabled, onSearch, onFocus, counters } = props;
@@ -44,6 +45,7 @@ const SearchInput = ({ ...props }) => {
   return (
     <React.Fragment>
       <TextField
+        data-cy="searchInput"
         fullWidth
         placeholder="Search Counters"
         variant="outlined"
@@ -66,12 +68,20 @@ const SearchInput = ({ ...props }) => {
           variant="contained"
           className={classes.button}
           onClick={handleCancel}
+          data-cy="searchCancel"
         >
           Cancel
         </Button>
       )}
     </React.Fragment>
   );
+};
+
+SearchInput.propTypes = {
+  disabled: PropTypes.bool,
+  onSearch: PropTypes.func,
+  onFocus: PropTypes.func,
+  counters: PropTypes.array,
 };
 
 export default SearchInput;

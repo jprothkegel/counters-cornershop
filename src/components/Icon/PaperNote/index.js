@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function PaperNote({ ...props }) {
   const { className } = props;
@@ -107,5 +108,9 @@ function PaperNote({ ...props }) {
     </svg>
   );
 }
+
+PaperNote.propTypes = {
+  className: PropTypes.object,
+};
 
 export default PaperNote;

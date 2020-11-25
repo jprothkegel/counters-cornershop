@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function RefreshIcon({ ...props }) {
   const { fill } = props;
@@ -17,5 +18,9 @@ function RefreshIcon({ ...props }) {
     </svg>
   );
 }
+
+RefreshIcon.propTypes = {
+  fill: PropTypes.string,
+};
 
 export default RefreshIcon;

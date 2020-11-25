@@ -12,22 +12,27 @@ const countersSlice = createSlice({
   name: 'counters',
   initialState: {
     counters: [],
-    setStatus: 'idle',
+    fetchStatus: 'idle',
     createStatus: 'idle',
     incDecStatus: 'idle',
     delStatus: 'idle',
     error: null,
   },
+  reducers: {
+    resetCreation(state) {
+      state.createStatus = 'idle';
+    },
+  },
   extraReducers: {
     [fetchCounters.pending]: (state) => {
-      state.setStatus = 'loading';
+      state.fetchStatus = 'loading';
     },
     [fetchCounters.fulfilled]: (state, action) => {
-      state.setStatus = 'succeded';
+      state.fetchStatus = 'succeded';
       state.counters = action.payload;
     },
     [fetchCounters.rejected]: (state, action) => {
-      state.setStatus = 'errorFetching';
+      state.fetchStatus = 'errorFetching';
       state.error = action.error.messsage;
     },
     [createCounter.pending]: (state) => {
@@ -38,7 +43,7 @@ const countersSlice = createSlice({
       state.counters = state.counters.concat(action.payload);
     },
     [createCounter.rejected]: (state, action) => {
-      state.createSstatus = 'errorCreating';
+      state.createStatus = 'errorCreating';
       state.error = action.error.messsage;
     },
     [incrementCounter.pending]: (state) => {
@@ -53,7 +58,7 @@ const countersSlice = createSlice({
       );
     },
     [incrementCounter.rejected]: (state, action) => {
-      state.incDecStatus = 'error';
+      state.incDecStatus = 'errorIncrementing';
       state.error = action.error.message;
     },
     [decrementCounter.pending]: (state) => {
@@ -67,6 +72,9 @@ const countersSlice = createSlice({
           : counter,
       );
     },
+    [decrementCounter.rejected]: (state) => {
+      state.incDecStatus = 'errorDecrementing';
+    },
     [deleteCounter.pending]: (state) => {
       state.delStatus = 'deleting';
     },
@@ -77,7 +85,7 @@ const countersSlice = createSlice({
       );
     },
     [deleteCounter.rejected]: (state, action) => {
-      state.delStatus = 'error';
+      state.delStatus = 'errorDeleting';
       state.error = action.error.messsage;
     },
     [refreshCounters.pending]: (state) => {
@@ -90,4 +98,5 @@ const countersSlice = createSlice({
   },
 });
 
+export const { resetCreation } = countersSlice.actions;
 export default countersSlice.reducer;

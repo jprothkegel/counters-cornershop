@@ -6,6 +6,7 @@ import CreateCounterBody from './CreateCounterBody';
 import Transition from '../Transition';
 import { useCreateCounterStyles } from './styles';
 import ExamplesDialog from '../ExamplesDialog';
+import PropTypes from 'prop-types';
 
 const CreateCounterDialog = ({ ...props }) => {
   const { open, onClose } = props;
@@ -45,6 +46,11 @@ const CreateCounterDialog = ({ ...props }) => {
       />
     </React.Fragment>
   );
+};
+
+CreateCounterDialog.propTypes = {
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
 };
 
 export default CreateCounterDialog;
