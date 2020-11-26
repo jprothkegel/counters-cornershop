@@ -24,7 +24,7 @@ const Welcome = () => {
       >
         <Logo />
         <div>
-          <Typography className={classes.title}>Welcome to counters</Typography>
+          <Typography className={classes.title}>Welcome to Counters</Typography>
           <Typography className={classes.description}>
             Capture cups of lattes, frapuccinos, or anything else that can be
             counted.
