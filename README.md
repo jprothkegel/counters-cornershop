@@ -54,6 +54,8 @@ The main folders inside /src are:
 
 ## How to run the tests
 ---
+**Important Detail: The app must be running in port 3000 to be able to run the tests**
+
 First of all is needed to go to the test folder, from the app root folder run:
 * `cd cypress-tests`  
 
