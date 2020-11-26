@@ -28,7 +28,7 @@ const Alert = ({ ...props }) => {
 };
 
 Alert.propTypes = {
-  open: PropTypes.func,
+  open: PropTypes.bool,
   onClose: PropTypes.func,
   severity: PropTypes.string,
   message: PropTypes.string,
